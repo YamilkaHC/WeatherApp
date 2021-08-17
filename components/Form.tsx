@@ -2,15 +2,18 @@ import React from 'react'
 import { useState } from 'react'
 
 
-export default function Form(dataConsult: any) {
+
+export default function Form({dataConsult}: any ) {
     //const handleChange = e => {return() }
+
+ 
 
     const [search, saveSearch] = useState({
         city : '', 
         country: ''
     })
 
-    const handleChange = e => {
+    const handleChange = (e : any) => {
 
         saveSearch({
             ...search, 
@@ -19,35 +22,38 @@ export default function Form(dataConsult: any) {
         })
     }
 
-    const WeatherConsult = e => {
+    const WeatherConsult = ( e : any) => {
         e.preventDefault();
 
-        dataConsult(search);
+        dataConsult(search); 
     }
+
 
     return (
         <form onSubmit = {WeatherConsult}>
             {/* {error ? <Error mensaje="Ambos campos son obligatorios" /> : null } */}
+
 
             <div className="input-field col s12">
                 <input
                     type="text"
                     name="city"
                     id="city"
-                    //value={city}
+                    placeholder="city"
                     onChange={handleChange}
                 />
-                <label htmlFor="city">city: </label>
+            
             </div>
+
 
             <div className="input-field col s12">
                 <select
                     name="country"
                     id="country"
-                   // value={country}
-                    //onChange={handleChange}
+                    //value={country}
+                    onChange={handleChange}
                 >
-                    <option value="">-- Seleccione un país --</option>
+                    <option value="">-- Select a country --</option>
                     <option value="US">Estados Unidos</option>
                     <option value="MX">México</option>
                     <option value="AR">Argentina</option>
@@ -55,14 +61,16 @@ export default function Form(dataConsult: any) {
                     <option value="CR">Costa Rica</option>
                     <option value="ES">España</option>
                     <option value="PE">Perú</option>
+                    <option value="PE">República Dominicana</option>
                 </select>
-                <label htmlFor="country">País: </label>
+               
             </div>
+
 
             <div className="input-field col s12">
                 <input
                     type="submit"
-                    value="Buscar Clima"
+                    value="Search a country"
                     className="waves-effect waves-light btn-large btn-block yellow accent-4"
                 />
             </div>
